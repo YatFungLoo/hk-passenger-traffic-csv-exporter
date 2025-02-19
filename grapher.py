@@ -1,7 +1,7 @@
 import requests
 import pandas as pd
 from io import StringIO
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 import argparse
 import os
 import warnings
@@ -83,11 +83,24 @@ def output2csv(concat_df):
     concat_df.to_csv(output_path, index=False)
 
 
+def flaskOutput(date_input):
+    try:
+        date_obj = datetime.strptime(date_input, '%Y-%m-%d')
+        formatted_date = date_obj.strftime('%d-%m-%Y')
+    except ValueError:
+        return "Invalid date format. Please use YYYY-MM-DD.", 400
+    
+    date_df = getDateData(download2df(), formatted_date)
+    concat_df = getConcatData(getArrivalData(
+        date_df), getDepartureData(date_df))
+    return concat_df
+
+
 def main(opt):
     if opt.date == date.today():
         warnings.warn(
-            "Newest available data is from yesterday, using yesterday's data instead.")
-        date_df = getDateData(download2df(), opt.date - timedelta(days=1))
+            "Newest available data is from yesterday, using newest data available.")
+        date_df = getDateData(download2df(), opt.date - timedelta(days=2))
     else:
         date_df = getDateData(download2df(), opt.date)
     concat_df = getConcatData(getArrivalData(
