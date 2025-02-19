@@ -1,5 +1,7 @@
 # Hong Kong Passenger Traffic csv Exporter
 
+App link: [https://hkp-pt-daily-data.up.railway.app/](https://hkp-pt-daily-data.up.railway.app/)
+
 csv exporter for [Hong Kong daily passenger traffic data](https://data.gov.hk/en-data/dataset/hk-immd-set5-statistics-daily-passenger-traffic).
 
 ## To use the code
