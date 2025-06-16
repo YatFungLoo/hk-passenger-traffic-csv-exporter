@@ -16,6 +16,16 @@ Example, default value are provided for empty arguments.
 python3 grapher.py --date=17-02-2025
 ```
 
+check `data/` directory to see the output file.
+
+To run as a flask application, ensure it is installed and run
+
+```bash
+flash run
+```
+
+![alt text](sample.png)
+
 ## Requirements
 
 Python 3.13.1
